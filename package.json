@@ -1,9 +1,10 @@
 {
   "name": "asistencia_qr",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./server/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./server/app.js"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +16,8 @@
     "express": "^4.21.2",
     "googleapis": "^144.0.0",
     "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
   }
 }

@@ -1,4 +1,9 @@
 :root{
+    --primario-oscuro: #4d2975;
+    --primario-claro: #2b72aa;
+    --secundario:#ffffff;
+    --secundario-2: rgba(248, 167, 64, 0.7);
+    
     --fuente-principal: 3.8rem;
 }
 html{
@@ -13,5 +18,72 @@ html{
 body{
     font-size: 16px;
     font-family: "Roboto", serif;
+    background-image: linear-gradient(to top, #dfe9f3 0%, var(--secundario) 100%);
 }
 
+a{
+    text-decoration: none;
+}
+
+.sombras{
+    -webkit-box-shadow: 0px 0px 10px 1px rgba(77,41,117,0.7);
+    -moz-box-shadow: 0px 0px 10px 1px rgba(77,41,117,0.7);
+    box-shadow: 0px 0px 10px 1px rgba(77,41,117,0.7);
+}
+
+.webp header{
+    background-image: url(../assets/encabezado.webp);
+}
+
+.no-webp header{
+    background-position: url(../assets/encabezado.jpeg);
+}
+
+header{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 20rem;
+    margin-bottom: 2rem;
+}
+
+.contenedor{
+    max-width: 80rem;
+    margin: 0 auto;
+    height: 80rem;
+    background-color: var(--secundario-2);
+    border-radius: 1rem;
+    /* margin-top: -5rem; */
+}
+
+footer{
+    margin-top: 2rem;
+    background: #4d2975;
+    background: -moz-linear-gradient(-45deg, #4d2975 43%, #2b72aa 73%, #2b72aa 98%, #2b72aa 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(43%, #4d2975), color-stop(73%, #2b72aa), color-stop(98%, #2b72aa), color-stop(100%, #2b72aa));
+    background: -webkit-linear-gradient(-45deg, #4d2975 43%, #2b72aa 73%, #2b72aa 98%, #2b72aa 100%);
+    background: -o-linear-gradient(-45deg, #4d2975 43%, #2b72aa 73%, #2b72aa 98%, #2b72aa 100%);
+    background: -ms-linear-gradient(-45deg, #4d2975 43%, #2b72aa 73%, #2b72aa 98%, #2b72aa 100%);
+    background: linear-gradient(135deg, #4d2975 43%, #2b72aa 73%, #2b72aa 98%, #2b72aa 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d2975', endColorstr='#2b72aa', GradientType=1 );
+}
+
+.media-icons{
+    font-size: 4rem;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.media-icons i{
+    color: var(--secundario);
+    transition: .4s ease;
+}
+
+.media-icons i:hover{
+    cursor: pointer;
+    transform: translateY(-1rem);
+    color:var(--secundario-2);
+}
