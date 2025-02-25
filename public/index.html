@@ -6,7 +6,7 @@
     <meta name="description" content="Pagina para Registro de Presentismo">
     <title>Registro de Asistencia</title>
 
-    <link rel="icon" href="#" type="image/x-icon">
+    <link rel="icon" href="/assets/icono.png" type="image/x-icon" style="border-radius: 25%;">
 
     <link rel="preload" href="/styles/normalize.css" as="style">
     <link rel="stylesheet" href="/styles/normalize.css" type="text/css">
@@ -28,6 +28,39 @@
     </header>
     <main>
         <section class="contenedor sombras">
+            <h2>Completa el formulario</h2>
+
+            <section>
+                <form class="formulario" action="" method="post" enctype="text/plain">
+                    <fieldset>
+                        <legend>Ingresa tus datos</legend>
+                        <div class="formulario-campos">
+                            <div class="campo">
+                                <label for="curso">Trayecto Formativo:</label>
+                                <select name="curso" id="curso">
+                                    <option class="campo-selected" value="" selected>Elija su curso de la lista</option>
+                                    <option value="">Programacion</option>
+                                    <option value="">Cocina</option>
+                                    <option value="">Refrigeracion</option>
+                                </select>
+                            </div>
+                            <div class="campo">
+                                <label for="nombre">Nombre Completo:</label>
+                                <select name="nombre" id="nombre">
+                                    <option class="campo-selected" value="" selected>Seleccione su nombre</option>
+                                    <option value="">Pepito</option>
+                                    <option value="">Josele</option>
+                                    <option value="">Augusto</option>
+                                </select>
+                            </div>
+                        </div><!--fin formulario-campos-->
+                        <div class="formulario-btn">
+                            <input class="btn" type="submit" value="Enviar">
+                            <input class="btn" type="reset" value="Cancelar">
+                        </div>
+                    </fieldset>
+                </form>
+            </section>
 
         </section>
     </main>
@@ -35,7 +68,7 @@
         <div class="media-icons">
             <a href="http://" target="_blank" rel="noopener noreferrer"><i class='bx bxl-instagram-alt' ></i></a>
             <a href="http://" target="_blank" rel="noopener noreferrer"><i class='bx bxl-facebook-circle' ></i></a>
-            <a href="http://" target="_blank" rel="noopener noreferrer"><i class='bx bxl-whatsapp-square' ></i></a>
+            <a href="http://wa.me/+5491128383351" target="_blank" rel="noopener noreferrer"><i class='bx bxl-whatsapp-square' ></i></a>
         </div>
     </footer>
 </body>
