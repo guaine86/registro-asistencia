@@ -17,10 +17,12 @@
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
+    <link rel="preload" href="/assets/portada.webp" as="image" type="image/webp">
+
     <link rel="preload" href="/styles/styles.css" as="style">
     <link rel="stylesheet" href="/styles/styles.css" type="text/css">
 
-    <script defer src="js/modernizr.js"></script>
+    <script defer src="/js/modernizr.js"></script>
 </head>
 <body>
     <header>
@@ -31,7 +33,7 @@
             <h2>Completa el formulario</h2>
 
             <section>
-                <form class="formulario" action="" method="post" enctype="text/plain">
+                <form class="formulario" action="/registrar" method="post" enctype="text/plain">
                     <fieldset>
                         <legend>Ingresa tus datos</legend>
                         <div class="formulario-campos">
@@ -39,20 +41,21 @@
                                 <label for="curso">Trayecto Formativo:</label>
                                 <select name="curso" id="curso">
                                     <option class="campo-selected" value="" selected>Elija su curso de la lista</option>
-                                    <option value="">Programacion</option>
-                                    <option value="">Cocina</option>
-                                    <option value="">Refrigeracion</option>
+                                    <option value="Programacion">Programacion</option>
+                                    <option value="Cocina">Cocina</option>
+                                    <option value="Refrigeracion">Refrigeracion</option>
                                 </select>
                             </div>
                             <div class="campo">
                                 <label for="nombre">Nombre Completo:</label>
                                 <select name="nombre" id="nombre">
                                     <option class="campo-selected" value="" selected>Seleccione su nombre</option>
-                                    <option value="">Pepito</option>
-                                    <option value="">Josele</option>
-                                    <option value="">Augusto</option>
+                                    <option value="Pepito">Pepito</option>
+                                    <option value="Josele">Josele</option>
+                                    <option value="Augusto">Augusto</option>
                                 </select>
                             </div>
+                            <input type="hidden" name="token" id="token">
                         </div><!--fin formulario-campos-->
                         <div class="formulario-btn">
                             <input class="btn" type="submit" value="Enviar">
@@ -71,5 +74,6 @@
             <a href="http://wa.me/+5491128383351" target="_blank" rel="noopener noreferrer"><i class='bx bxl-whatsapp-square' ></i></a>
         </div>
     </footer>
+    <script src="js/main.js"></script>
 </body>
 </html>

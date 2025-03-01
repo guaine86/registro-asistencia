@@ -95,7 +95,7 @@ header{
 }
 
 .contenedor h2{
-    color: var(--primario-claro);
+    color: var(--primario-oscuro);
 }
 
 /* formulario */
