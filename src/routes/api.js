@@ -1,5 +1,5 @@
 const express = require('express');
-const { generateToken} = require('../utils/token.js');
+const {generateToken} = require('../utils/token.js');
 const {registrar} = require('../controllers/asistencia.js');
 
 const router = express.Router();

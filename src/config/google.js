@@ -6,13 +6,13 @@ const auth = new google.auth.GoogleAuth({
 
 const sheets = google.sheets({version: 'v4', auth});
 
-exports.registrarAsistencia = async(curso, nombre)=>{
+exports.registrarAsistencia = async(curso, nombre, token)=>{
     await sheets.spreadsheets.values.append({
         spreadsheetId: process.env.SPREADSHEET_ID,
-        range: 'Prueba!A:C',
+        range: 'Prueba!A:D',
         valueInputOption: 'RAW',
         resource: {
-            values: [[curso, nombre, new Date().toISOString()]],
+            values: [[curso, nombre, new Date().toISOString(), token]],
         }
     });
 };

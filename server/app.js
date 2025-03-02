@@ -1,6 +1,8 @@
 const express = require('express');
 const env = require('dotenv');
+const path = require('path');
 const apiRoutes = require('../src/routes/api.js');
+const {generateToken} = require('../src/utils/token.js');
 
 // env.config({path: './.env'});
 env.config();
@@ -14,8 +16,17 @@ app.use(express.static('public'));
 app.use('/api', apiRoutes);
 
 app.get('/', (req,res) =>{
-    res.render('index.html');
+    const token = generateToken();
+    // res.send(token);
+    res.redirect(`/formulario/${token}`);
+    // res.render('index.html');
 })
+
+app.get('/formulario/:token', (req, res) => {
+    // const muestra = req.params;
+    // res.send(muestra)
+    res.sendFile(path.join(__dirname,'../index.html'));
+});
 
 app.listen(puerto, ()=>{
     console.log(`El servidor local es: http://localhost:${puerto}`);
