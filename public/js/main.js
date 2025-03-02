@@ -10,10 +10,13 @@ const miModulo = (() => {
     }    
     
     document.addEventListener('DOMContentLoaded', async ()=>{
-        const response = await fetch('/api/token');
-        const data = await response.json();
-        document.getElementById('token').value = data.token;
-    
+        // const response = await fetch('/api/token');
+        // const data = await response.json();
+        // document.getElementById('token').value = data.token;
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token ') || window.location.pathname.split('/')[2];
+        document.getElementById('token').value = token;
+
         const formulario = document.querySelector('.formulario');
         formulario.addEventListener('submit', async (evento) => {
             evento.preventDefault();
@@ -35,6 +38,9 @@ const miModulo = (() => {
             const texto = !result.message ? result.error : result.message;
             // alert(result.message);
             lanzaSWAL(icono, "Info Solicitud:", texto);
+
+            document.querySelector('#curso').disabled = true;
+            document.querySelector('#nombre').disabled = true;
         });
     })
 })();

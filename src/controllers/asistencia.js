@@ -4,7 +4,7 @@ const {registrarAsistencia} = require('../config/google.js');
 exports.registrar = async(req, res) => {
     const {curso, nombre, token} = req.body;
 
-    if(!validateToken){
+    if(!validateToken(token)){
         return res.status(400).json({ error: 'Token inválido o expirado'});
     }
     // console.log(`Curso: ${curso}\nNombre: ${nombre}\nToken: ${token}`);
