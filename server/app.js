@@ -17,15 +17,11 @@ app.use('/api', apiRoutes);
 
 app.get('/', (req,res) =>{
     const token = generateToken();
-    // res.send(token);
     res.redirect(`/formulario/${token}`);
-    // res.render('index.html');
 })
 
 app.get('/formulario/:token', (req, res) => {
-    // const muestra = req.params;
-    // res.send(muestra)
-    res.sendFile(path.join(__dirname,'../index.html'));
+    res.sendFile(path.join(__dirname,'../public/formulario.html'));
 });
 
 app.listen(puerto, ()=>{
