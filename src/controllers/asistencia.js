@@ -7,7 +7,8 @@ exports.registrar = async(req, res) => {
     if(!validateToken(token)){
         return res.status(400).json({ error: 'Token inválido o expirado'});
     }
-    // console.log(`Curso: ${curso}\nNombre: ${nombre}\nToken: ${token}`);
-    await registrarAsistencia(curso, nombre, token);
-    res.json({message: 'Asistencia registrada con exito!'}); 
+    
+    const response = await registrarAsistencia(curso, nombre, token);
+    // res.json({message: 'Asistencia registrada con exito!'}); 
+    res.json(JSON.parse(response.body));
 };

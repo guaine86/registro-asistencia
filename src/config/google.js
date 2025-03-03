@@ -14,12 +14,38 @@ const auth = new google.auth.GoogleAuth({
 const sheets = google.sheets({version: 'v4', auth});
 
 exports.registrarAsistencia = async(curso, nombre, token)=>{
-    await sheets.spreadsheets.values.append({
-        spreadsheetId: process.env.SPREADSHEET_ID,
-        range: 'Prueba!A:D',
-        valueInputOption: 'RAW',
-        resource: {
-            values: [[curso, nombre, new Date().toISOString(), token]],
+    try {
+        
+        const response = await sheets.spreadsheets.values.get({
+            spreadsheetId: process.env.SPREADSHEET_ID,
+            range: 'Prueba!D:D',
+        })
+    
+        const tokenUsados = response.data.values || [];
+        if(tokenUsados.flat().includes(token)){
+            return {
+                statusCode: 400,
+                body: JSON.stringify({error: 'Este token ya fue usado!'}),
+            }
         }
-    });
+    
+        await sheets.spreadsheets.values.append({
+            spreadsheetId: process.env.SPREADSHEET_ID,
+            range: 'Prueba!A:D',
+            valueInputOption: 'RAW',
+            resource: {
+                values: [[curso, nombre, new Date().toISOString(), token]],
+            }
+        });
+
+        return {
+            statusCode: 200,
+            body: JSON.stringify({message: 'Asistencia registrada con exito!'})
+        }
+    } catch (error) {
+        return {
+            statusCode: 500,
+            body: JSON.stringify({error: 'Error al registrar la asistencia!'}),
+        }
+    }
 };
