@@ -1,15 +1,15 @@
 const miModulo = (() => {
     'use strict';
 
-    function lanzaSWAL(icono, titulo,mensaje){
+    function lanzaSWAL(icono, titulo, mensaje) {
         return Swal.fire({
             icon: `${icono}`,
             title: `${titulo}`,
             text: `${mensaje}`
         })
-    }    
-    
-    document.addEventListener('DOMContentLoaded', async ()=>{
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
         // const response = await fetch('/api/token');
         // const data = await response.json();
         // document.getElementById('token').value = data.token;
@@ -17,16 +17,39 @@ const miModulo = (() => {
         const token = urlParams.get('token ') || window.location.pathname.split('/')[2];
         document.getElementById('token').value = token;
 
+        // Carga de cursos y alumnos
+        const selectCurso = document.querySelector('#curso');
+        try {
+            const response = await fetch('/api/cursos');
+            const cursos = await response.json();
+            // console.log(cursos);
+            cursos.forEach((curso) => {
+                const option = document.createElement('OPTION');
+                option.classList.add('capitalize');
+                option.value = curso;
+                option.textContent = curso;
+                selectCurso.append(option);
+            });
+        } catch (error) {
+            console.error('Error al cargar los cursos: ', error);
+        }
+
+        selectCurso.addEventListener('change', async (evento) => {
+            const cursoSeleccionado = evento.target.value;
+            console.log(cursoSeleccionado);
+        })
+
+        // Envio del formulario
         const formulario = document.querySelector('.formulario');
         formulario.addEventListener('submit', async (evento) => {
             evento.preventDefault();
             const datos = Object.fromEntries(new FormData(evento.target));
 
-            if(!datos.curso || !datos.nombre){
+            if (!datos.curso || !datos.nombre) {
                 return lanzaSWAL("error", "Oops...", "Complete todos los campos!!");
             }
 
-            if(document.cookie.includes(`clase=${datos.curso}`)){
+            if (document.cookie.includes(`clase=${datos.curso}`)) {
                 return lanzaSWAL("error", "Oops..", "Ya has registrado tu asistencia para esta clase!!");
             }
 
@@ -41,12 +64,12 @@ const miModulo = (() => {
             const icono = !result.message ? "info" : "success";
             const texto = !result.message ? result.error : result.message;
             // alert(result.message);
-            if(result.message === 'Asistencia registrada con exito!'){
+            if (result.message === 'Asistencia registrada con exito!') {
                 const expirationDate = new Date();
-                expirationDate.setTime(expirationDate.getTime() + 2*60*60*1000);
+                expirationDate.setTime(expirationDate.getTime() + 2 * 60 * 60 * 1000);
                 document.cookie = `clase=${datos.curso}; expires=${expirationDate.toUTCString()}; path=/`;
             }
-            
+
             lanzaSWAL(icono, "Info Solicitud:", texto);
 
             document.querySelector('#curso').disabled = true;

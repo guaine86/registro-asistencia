@@ -13,6 +13,24 @@ const auth = new google.auth.GoogleAuth({
 
 const sheets = google.sheets({version: 'v4', auth});
 
+exports.obtenerCursos = async()=>{
+    try {
+        const response = await sheets.spreadsheets.values.get({
+            spreadsheetId: process.env.SPREADSHEET_ID,
+            range: 'Prueba!J2:J',
+        });
+
+        const cursos = response.data.values.flat();
+    
+        return cursos;
+    } catch (error) {
+        return {
+            statusCode: 500,
+            body: JSON.stringify({error: `Error al obtener los cursos: ${error}`}),
+        }
+    }
+};
+
 exports.registrarAsistencia = async(curso, nombre, token)=>{
     try {
         
