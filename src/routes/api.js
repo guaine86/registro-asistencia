@@ -1,6 +1,6 @@
 const express = require('express');
 const {generateToken} = require('../utils/token.js');
-const {obtenerCursos} = require('../config/google.js');
+const {obtenerCursos, obtenerAlumnosPorCurso} = require('../config/google.js');
 const {registrar} = require('../controllers/asistencia.js');
 
 const router = express.Router();
@@ -16,6 +16,15 @@ router.get('/cursos', async(req, res)=>{
         res.json(cursos);
     } catch (error) {
         res.status(500).json({error: 'Error al obtener los cursos!'});
+    }
+});
+
+router.get('/alumnos/:curso', async(req,res)=>{
+    try {
+        const alumnos = await obtenerAlumnosPorCurso(req.params.curso);
+        res.json(alumnos);
+    } catch (error) {
+        res.status(500).json({error: 'Error al obtener los alumnos!'});
     }
 });
 

@@ -31,6 +31,24 @@ exports.obtenerCursos = async()=>{
     }
 };
 
+exports.obtenerAlumnosPorCurso = async(curso)=>{
+    try {
+        const response = await sheets.spreadsheets.values.get({
+            spreadsheetId: process.env.SPREADSHEET_ID,
+            range: 'Prueba!G2:I',
+        });
+
+        const alumnos = response.data.values.filter((alumno)=> alumno[2] === curso );
+        // console.log(alumnos);
+        return alumnos.map((alumno)=> `${alumno[0]}, ${alumno[1]}`);
+    } catch (error) {
+        return {
+            statusCode: 500,
+            body: JSON.stringify({error: `Error al obtener los alumnos: ${error}`}),
+        }
+    }
+};
+
 exports.registrarAsistencia = async(curso, nombre, token)=>{
     try {
         

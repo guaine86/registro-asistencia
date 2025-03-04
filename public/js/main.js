@@ -9,6 +9,27 @@ const miModulo = (() => {
         })
     }
 
+    // Funcion carga alumno
+    async function cargarAlumnos(curso) {
+        const selectAlumno = document.querySelector('#nombre');
+        selectAlumno.disabled = false;
+
+        try {
+            const response = await fetch(`/api/alumnos/${curso}`);
+            const alumnos = await response.json();
+
+            alumnos.forEach((alumno)=>{
+                const option = document.createElement('OPTION');
+                option.classList.add('capitalize');
+                option.value = alumno;
+                option.textContent = alumno;
+                selectAlumno.append(option);
+            });
+        } catch (error) {
+            console.error('Error al cargar los alumnos: ', error);
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', async () => {
         // const response = await fetch('/api/token');
         // const data = await response.json();
@@ -36,8 +57,8 @@ const miModulo = (() => {
 
         selectCurso.addEventListener('change', async (evento) => {
             const cursoSeleccionado = evento.target.value;
-            console.log(cursoSeleccionado);
-        })
+            await cargarAlumnos(cursoSeleccionado);
+        });
 
         // Envio del formulario
         const formulario = document.querySelector('.formulario');
