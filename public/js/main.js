@@ -12,6 +12,7 @@ const miModulo = (() => {
     // Funcion carga alumno
     async function cargarAlumnos(curso) {
         const selectAlumno = document.querySelector('#nombre');
+        selectAlumno.innerHTML = '<option value="" selected disabled>Seleccione su nombre</option>'
         selectAlumno.disabled = false;
 
         try {
